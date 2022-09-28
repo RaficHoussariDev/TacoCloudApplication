@@ -31,6 +31,18 @@ CREATE TABLE IF NOT EXISTS INGREDIENT (
     type varchar(10) not null
 );
 
+CREATE TABLE IF NOT EXISTS USER_TABLE(
+    id identity,
+    username varchar not null,
+    password varchar not null,
+    fullName varchar not null,
+    street varchar(50) not null,
+    city varchar(50) not null,
+    state varchar(2) not null,
+    zip varchar(10) not null,
+    phoneNumber varchar not null
+);
+
 ALTER TABLE TACO
     ADD FOREIGN KEY (taco_order) REFERENCES TACO_ORDER(id);
 

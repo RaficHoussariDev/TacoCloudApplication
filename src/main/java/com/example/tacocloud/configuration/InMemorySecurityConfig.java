@@ -14,32 +14,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-public class SecurityConfig {
+public class InMemorySecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // In memory user store
-    @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
-        List<UserDetails> usersList = new ArrayList<>();
-
-        User buzz = new User(
-                "buzz",
-                encoder.encode("password"),
-                List.of(new SimpleGrantedAuthority("ROLE_USER"))
-        );
-
-        User woody = new User(
-                "woody",
-                encoder.encode("password"),
-                List.of(new SimpleGrantedAuthority("ROLE_USER"))
-        );
-
-        usersList.add(buzz);
-        usersList.add(woody);
-
-        return new InMemoryUserDetailsManager(usersList);
-    }
+    // In memory user store that can be used instead of the registration form and controller
+//    @Bean
+//    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
+//        List<UserDetails> usersList = new ArrayList<>();
+//
+//        User buzz = new User(
+//                "buzz",
+//                encoder.encode("password"),
+//                List.of(new SimpleGrantedAuthority("ROLE_USER"))
+//        );
+//
+//        User woody = new User(
+//                "woody",
+//                encoder.encode("password"),
+//                List.of(new SimpleGrantedAuthority("ROLE_USER"))
+//        );
+//
+//        usersList.add(buzz);
+//        usersList.add(woody);
+//
+//        return new InMemoryUserDetailsManager(usersList);
+//    }
 }
