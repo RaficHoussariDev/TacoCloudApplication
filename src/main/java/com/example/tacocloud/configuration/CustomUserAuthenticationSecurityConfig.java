@@ -53,7 +53,6 @@ public class CustomUserAuthenticationSecurityConfig {
         // Create customized login page
         // Add OAuth2 login
         return http
-                .csrf().disable()
                 .authorizeRequests()
                 .mvcMatchers("/design", "/orders").access("hasRole('USER')") //the role is ROLE_USER but the hasRole() function assumes the prefix ROLE
                 .antMatchers("/", "/**").access("permitAll()")
