@@ -6,3 +6,14 @@ spring:
     url: jdbc:h2:mem:tacocloud
     username: rafic
     password: password
+  security:
+    oauth2:
+      client:
+        registration:
+        # oauth2 or openid provider name
+          facebook:
+            clientId: 517286560224928
+            clientSecret: 99f7373d0a81e7d183282294059fc18d
+            scope:
+              - email
+              - public_profile
