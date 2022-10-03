@@ -65,6 +65,9 @@ public class CustomUserAuthenticationSecurityConfig {
                 .loginPage("/login")
                 .defaultSuccessUrl("/design", true) // true here means that we are forcing the user to be redirected to the /design page after successful login even if he was trying to navigate elsewhere before being redirected to /login
                 .and()
+                .logout()
+                .logoutSuccessUrl("/")
+                .and()
                 .build();
     }
 }
