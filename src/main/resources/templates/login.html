@@ -18,6 +18,8 @@
             to register
         </p>
 
+        <a th:href="@{/oauth2/authorization/facebook}">Sign in with Facebook</a><br /><br />
+
         <form method="post" th:action="@{/login}" id="loginForm">
             <label for="username">Username: </label>
             <input type="text" name="username" id="username" /><br />

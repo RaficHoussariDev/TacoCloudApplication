@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class CustomizedUserAuthenticationSecurityConfig {
+public class CustomUserAuthenticationSecurityConfig {
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository) {
         return username -> {
@@ -51,17 +51,19 @@ public class CustomizedUserAuthenticationSecurityConfig {
 //                .build();
 
         // Create customized login page
+        // Add OAuth2 login
         return http
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/design", "/orders").access("hasRole('USER')") //the role is ROLE_USER but the hasRole() function assumes the prefix ROLE
+                .mvcMatchers("/design", "/orders").access("hasRole('USER')") //the role is ROLE_USER but the hasRole() function assumes the prefix ROLE
                 .antMatchers("/", "/**").access("permitAll()")
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .and()
+                .oauth2Login()
+                .loginPage("/login")
                 .defaultSuccessUrl("/design", true) // true here means that we are forcing the user to be redirected to the /design page after successful login even if he was trying to navigate elsewhere before being redirected to /login
-//                .loginProcessingUrl("/authenticate")
-//                .usernameParameter("user")
-//                .passwordParameter("password")
                 .and()
                 .build();
     }
