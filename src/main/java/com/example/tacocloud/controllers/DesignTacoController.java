@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -33,7 +34,8 @@ public class DesignTacoController {
     }
 
     @ModelAttribute
-    public void addIngredient(Model model) {
+    public void addIngredient(Model model, Principal principal) {
+        log.info("Principal: {}", principal);
         List<Ingredient> ingredients = StreamSupport
                 .stream(ingredientRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
