@@ -49,7 +49,11 @@ public class TacoOrder implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL) // If the order is deleted, all its tacos will be deleted too
     private List<Taco> tacos = new ArrayList<>();
+
     private Date placedAt = new Date();
+
+//    @ManyToOne
+//    private User user;
 
     public void addTaco(Taco taco) {
         this.tacos.add(taco);
